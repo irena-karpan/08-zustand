@@ -9,22 +9,6 @@ import { createNote } from "../../lib/api";
 import { useRouter } from "next/navigation";
 import { useNoteDraftStore } from "@/lib/store/noteStore";
 
-// interface NoteFormProps {
-//   onClose: () => void;
-// }
-
-// interface noteFormValues {
-//   title: string;
-//   content: string;
-//   tag: "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
-// }
-
-// const noteFormValues: InitialValues = {
-//   title: "",
-//   content: "",
-//   tag: "Todo",
-// };
-
 export default function NoteForm() {
   const { draft, setDraft, clearDraft } = useNoteDraftStore();
   const router = useRouter();
@@ -37,19 +21,13 @@ export default function NoteForm() {
       queryClient.invalidateQueries({
         queryKey: ["notes"],
       });
-      // onClose();
       clearDraft();
       router.push("/notes/filter/all");
     },
     onError: () => {
       toast.error("Something went wrong! Please, try again!");
-      // onClose();
     },
   });
-
-  // const handleCreateMutation = (newNote: NewNote) => {
-  //   createMutation.mutate(newNote);
-  // };
 
   const handleSubmit = (formData: FormData) => {
     // const values = Object.fromEntries(formData) as unknown as NewNote;

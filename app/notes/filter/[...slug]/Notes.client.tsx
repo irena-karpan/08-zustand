@@ -5,9 +5,9 @@ import css from "./page.module.css";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { useDebouncedCallback } from "use-debounce";
-import Modal from "@/components/Modal/Modal";
+
 import Pagination from "@/components/Pagination/Pagination";
-import NoteForm from "@/components/NoteForm/NoteForm";
+
 import SearchBox from "@/components/SearchBox/SearchBox";
 import NoteList from "@/components/NoteList/NoteList";
 import { fetchNotes } from "@/lib/api";
@@ -20,7 +20,6 @@ interface NotesClientProps {
 export default function NotesClient({ tag }: NotesClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data } = useQuery({
     queryKey: ["notes", searchQuery, currentPage, tag],
@@ -36,9 +35,6 @@ export default function NotesClient({ tag }: NotesClientProps) {
     },
     300,
   );
-
-  // const onModalClose = () => setIsModalOpen(false);
-  // const onModalOpen = () => setIsModalOpen(true);
 
   return (
     <div className={css.app}>
@@ -58,11 +54,6 @@ export default function NotesClient({ tag }: NotesClientProps) {
       {/* {(isLoading || isFetching) && <Loader />}
       {isError && <UsersError errorMessage={error.message} />} */}
       {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
-      {/* {isModalOpen && (
-        <Modal onClose={onModalClose}>
-          <NoteForm onClose={onModalClose} />
-        </Modal>
-      )} */}
       <Toaster />
     </div>
   );
