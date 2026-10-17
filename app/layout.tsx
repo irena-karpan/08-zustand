@@ -8,7 +8,7 @@ import React from "react";
 
 const roboto = Roboto({
   variable: "--roboto-font",
-  weight: ["400"],
+  weight: ["400", "700"],
   display: "swap",
   subsets: ["latin"],
 });

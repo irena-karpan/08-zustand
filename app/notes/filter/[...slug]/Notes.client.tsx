@@ -11,6 +11,7 @@ import NoteForm from "@/components/NoteForm/NoteForm";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import NoteList from "@/components/NoteList/NoteList";
 import { fetchNotes } from "@/lib/api";
+import Link from "next/link";
 
 interface NotesClientProps {
   tag: string | undefined;
@@ -19,7 +20,7 @@ interface NotesClientProps {
 export default function NotesClient({ tag }: NotesClientProps) {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data } = useQuery({
     queryKey: ["notes", searchQuery, currentPage, tag],
@@ -36,8 +37,8 @@ export default function NotesClient({ tag }: NotesClientProps) {
     300,
   );
 
-  const onModalClose = () => setIsModalOpen(false);
-  const onModalOpen = () => setIsModalOpen(true);
+  // const onModalClose = () => setIsModalOpen(false);
+  // const onModalOpen = () => setIsModalOpen(true);
 
   return (
     <div className={css.app}>
@@ -50,18 +51,18 @@ export default function NotesClient({ tag }: NotesClientProps) {
             setPage={setCurrentPage}
           />
         )}
-        <button onClick={onModalOpen} className={css.button}>
+        <Link href="/notes/action/create" className={css.button}>
           Create note +
-        </button>
+        </Link>
       </div>
       {/* {(isLoading || isFetching) && <Loader />}
       {isError && <UsersError errorMessage={error.message} />} */}
       {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
-      {isModalOpen && (
+      {/* {isModalOpen && (
         <Modal onClose={onModalClose}>
           <NoteForm onClose={onModalClose} />
         </Modal>
-      )}
+      )} */}
       <Toaster />
     </div>
   );
