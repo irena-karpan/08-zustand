@@ -20,7 +20,7 @@ export async function generateMetadata({
     openGraph: {
       title: `Notes - ${tag}`,
       description: `Browse notes tagged with ${tag}. NoteHub allows you to filter and view notes based on specific tags.`,
-      url: `https://notehub.com/notes/filter/${slug[0] === "all" ? "all" : slug[0]}`,
+      url: `https://08-zustand-rho-vert.vercel.app/notes/filter/${slug[0] === "all" ? "all" : slug[0]}`,
       siteName: "NoteHub",
       type: "article",
       images: [
